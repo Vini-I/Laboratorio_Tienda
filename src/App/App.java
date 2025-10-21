@@ -73,9 +73,30 @@ public class App {
         var c2 = new Categoria(2,"Tecnología","Electrónica", true);
         catalogo.crearCategoria(c1); catalogo.crearCategoria(c2);
 
-        catalogo.crearProducto(new Producto("A100","Arroz 1kg", 1150, 50, c1));
-        catalogo.crearProducto(new Producto("A200","Frijol 1kg", 1450, 40, c1));
-        catalogo.crearProducto(new Producto("T900","Audífonos BT", 15990, 10, c2));
+        //catalogo.crearProducto(new Producto("A100","Arroz 1kg", 1150, 50, c1));
+        catalogo.crearProducto(new Producto.ProductBuilder()
+                .setCodigo("A100")
+                .setNombre("Arroz 1kg")
+                .setPrecio(1150)
+                .setStock(50)
+                .setCategoria(c1)
+                .build());
+        //catalogo.crearProducto(new Producto("A200","Frijol 1kg", 1450, 40, c1));
+        catalogo.crearProducto(new Producto.ProductBuilder()
+                .setCodigo("A200")
+                .setNombre("Frijol 1kg")
+                .setPrecio(1450)
+                .setStock(40)
+                .setCategoria(c1)
+                .build());
+        //catalogo.crearProducto(new Producto("T900","Audífonos BT", 15990, 10, c2));
+        catalogo.crearProducto(new Producto.ProductBuilder()
+                .setCodigo("T900")
+                .setNombre("Audífonos BT")
+                .setPrecio(15990)
+                .setStock(10)
+                .setCategoria(c2)
+                .build());
 
         var cli = new Cliente("1","Ana Pérez","ana@correo.com","7000-0000");
         cli.addMetodoPago(new MetodoPago(1, TipoMetodoPago.TARJETA, "****-1234"));
@@ -146,7 +167,14 @@ public class App {
                         System.out.println(ERR + "Ya existe un producto con ese código.");
                         break;
                     }
-                    catalogo.crearProducto(new Producto(codigo,nombre,precio,stock,cat));
+                    //catalogo.crearProducto(new Producto(codigo,nombre,precio,stock,cat));
+                    catalogo.crearProducto(new Producto.ProductBuilder()
+                        .setCodigo(codigo)
+                        .setNombre(nombre)
+                        .setPrecio(precio)
+                        .setStock(stock)
+                        .setCategoria(cat)
+                        .build());
                     System.out.println(OK + "Producto creado.");
                 } catch (NumberFormatException e){
                     System.out.println(ERR + "Precio/Stock inválidos.");
