@@ -20,6 +20,7 @@ import Clientes.MetodoPagoFactory;
 import java.io.UnsupportedEncodingException;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -108,7 +109,7 @@ public class App {
 
     private static void menuCategorias(ServicioCatalogo catalogo){
         System.out.println("-- Categorías --");
-        catalogo.listarCategorias().forEach(System.out::println);
+        catalogo.listarCategorias();
         System.out.println("a-Crear");
         System.out.println("b-Activar/Desactivar");
         System.out.println("Otra tecla para volver");
@@ -127,8 +128,7 @@ public class App {
         } else if("b".equalsIgnoreCase(op)){
             try {
                 System.out.print("Id: "); int id=Integer.parseInt(sc.nextLine());
-                Optional<Categoria> opt = catalogo.listarCategorias().stream()
-                        .filter(c->c.getId()==id).findFirst();
+Optional<Categoria> opt = catalogo.buscarCategoriaPorIdConIterator(id);
 
                 if (opt.isPresent()){
                     Categoria c = opt.get();
@@ -463,17 +463,27 @@ public class App {
 
     private static Categoria seleccionarCategoria(ServicioCatalogo catalogo){
         System.out.println("Categorías:");
-        catalogo.listarCategorias().forEach(System.out::println);
-        System.out.print("Id categoría: ");
-        try {
-            int idc = Integer.parseInt(sc.nextLine());
-            return catalogo.listarCategorias().stream()
-                    .filter(c->c.getId()==idc).findFirst()
-                    .orElse(null);
-        } catch (NumberFormatException e){
-            System.out.println(ERR + "Id inválido.");
-            return null;
+    Iterator<Categoria> it = catalogo.listarCategorias();
+    while (it.hasNext()) {
+        System.out.println(it.next());
+    }
+
+    System.out.print("Id categoría: ");
+    try {
+        int idc = Integer.parseInt(sc.nextLine());
+
+        it = catalogo.listarCategorias();
+        while (it.hasNext()) {
+            Categoria c = it.next();
+            if (c.getId() == idc) {
+                return c;
+            }
         }
+        return null; // Si no se encuentra
+    } catch (NumberFormatException e) {
+        System.out.println(ERR + "Id inválido.");
+        return null;
+    }
     }
 
     private static boolean confirmar(String msg){

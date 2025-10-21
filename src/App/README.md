@@ -22,11 +22,6 @@ El diseño sigue principios de **buenas prácticas**, **encapsulamiento**, **sep
 3. Desarrollar software modular y escalable con separación entre lógica de negocio y persistencia.
 4. Comprender la importancia del diseño limpio y la codificación segura.
 
----
-
-
-
-
 Factory Method: Se aplica el patron de diseño al paquete de clientes especificamente a los metodos de pago, para que a futuro si se tiene que añadir nuevos metodos de pago,
 no se tenga que cambiar en todo el codigo el new MetodoPago(), sino que solamente utilice el factory para respetar el principio solid OCP. Asi para no tener que modificar el codigo
 interno a futuro al momento de querer hacer una extension de funcionalidades (Como añadir un nuevo metodo de pago), solamente se añade una nueva opcion al metodo del factory.
@@ -34,6 +29,9 @@ interno a futuro al momento de querer hacer una extension de funcionalidades (Co
 Builder: Se implemento el metodo builder en la clase Producto por la cantidad de parametros que esta posee,
 ya que al ser 5 parametros estos se acumulan mucho en un solo constructor.
 
+Iterator: Se aplica en todas las clases que tengan una lista en este proyecto esas clases serian las Repositorio y
+sus metodos en las clases de Servicios y por ultimo modificar las llamadas del iterador en el main, en las unicas clases
+implementadas fuero en RepositorioCategorias,ServicioCatalogo y App
 
 ## ⚙️ Estructura del proyecto
 📦 src/

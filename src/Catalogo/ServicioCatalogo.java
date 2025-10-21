@@ -6,6 +6,7 @@ package Catalogo;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Iterator;
 
 /**
  *
@@ -34,10 +35,26 @@ public class ServicioCatalogo {
         categoriaRepo.eliminar(id); 
     }
     
-    public List<Categoria> listarCategorias(){
-        return categoriaRepo.obtenerTodo();
+    public Iterator<Categoria> listarCategorias() {
+    Iterator<Categoria> it = categoriaRepo.obtenerIterador();
+    while (it.hasNext()) {
+        Categoria c = it.next();
+        return it;
     }
+        return null;
+}
 
+    public Optional<Categoria> buscarCategoriaPorIdConIterator(int id) {
+        Iterator<Categoria> it = categoriaRepo.obtenerIterador();
+         while (it.hasNext()) {
+            Categoria c = it.next();
+         if (c.getId() == id) {
+             return Optional.of(c);
+        }
+    }
+    return Optional.empty();
+}
+    
     public void crearProducto(Producto p){
         productoRepo.guardar(p);
     }
