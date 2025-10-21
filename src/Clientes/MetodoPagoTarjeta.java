@@ -12,16 +12,15 @@ package Clientes;
  *
  * @author rodol
  */
-public class MetodoPagoTarjeta extends MetodoPago  {
+public class MetodoPagoTarjeta  extends MetodoPago implements PayMethodStrategy<MetodoPagoTarjeta>  {
 
-    public MetodoPagoTarjeta(int id,  String detalles) {
+    public MetodoPagoTarjeta(int id, String detalles) {
         super(id, TipoMetodoPago.TARJETA, detalles);
     }
-    
-    
 
- 
-    
-    
+    @Override
+    public MetodoPagoTarjeta create() {
+        return new MetodoPagoTarjeta(this.getId(), this.getDetalles());
+    }
     
 }

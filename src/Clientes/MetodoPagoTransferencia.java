@@ -8,10 +8,15 @@ package Clientes;
  *
  * @author rodol
  */
-public class MetodoPagoTransferencia extends MetodoPago {
+public class MetodoPagoTransferencia extends MetodoPago implements PayMethodStrategy<MetodoPagoTransferencia> {
 
     public MetodoPagoTransferencia(int id, String detalles) {
         super(id, TipoMetodoPago.TRANSFERENCIA, detalles);
+    }
+
+    @Override
+    public MetodoPagoTransferencia create() {
+        return new MetodoPagoTransferencia(this.getId(), this.getDetalles());
     }
     
     

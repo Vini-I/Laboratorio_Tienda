@@ -10,10 +10,15 @@ package Clientes;
  *
  * @author rodol
  */
-public class MetodoPagoEfectivo extends MetodoPago {
+public class MetodoPagoEfectivo extends MetodoPago implements PayMethodStrategy<MetodoPagoEfectivo> {
 
     public MetodoPagoEfectivo(int id,  String detalles) {
         super(id, TipoMetodoPago.EFECTIVO, detalles);
+    }
+
+    @Override
+    public MetodoPagoEfectivo create() {
+        return new MetodoPagoEfectivo(this.getId(), this.getDetalles());
     }
     
     

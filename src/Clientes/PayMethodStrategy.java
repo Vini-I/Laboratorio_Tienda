@@ -6,13 +6,8 @@ package Clientes;
 
 /**
  *
- * @author rodol
+ * @author autoa
  */
-public class MetodoPagoFactory {
-    private PayMethodStrategy strategy;
-    
-    public MetodoPago crearMetodoPago(PayMethodStrategy strategy){
-        return strategy.create();
-    }
-    
+public interface PayMethodStrategy <T extends MetodoPago> {
+    public T create ();
 }
