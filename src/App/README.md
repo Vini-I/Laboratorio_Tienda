@@ -24,6 +24,13 @@ El diseño sigue principios de **buenas prácticas**, **encapsulamiento**, **sep
 
 ---
 
+
+
+
+Factory Method: Se aplica el patron de diseño al paquete de clientes especificamente a los metodos de pago, para que a futuro si se tiene que añadir nuevos metodos de pago,
+no se tenga que cambiar en todo el codigo el new MetodoPago(), sino que solamente utilice el factory para respetar el principio solid OCP. Asi para no tener que modificar el codigo
+interno a futuro al momento de querer hacer una extension de funcionalidades (Como añadir un nuevo metodo de pago), solamente se añade una nueva opcion al metodo del factory.
+
 ## ⚙️ Estructura del proyecto
 📦 src/
 ├── App.java # Clase principal

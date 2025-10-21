@@ -16,6 +16,7 @@ import Catalogo.Producto;
 import Catalogo.RepositorioCategorias;
 import Catalogo.RepositorioProductos;
 import Catalogo.ServicioCatalogo;
+import Clientes.MetodoPagoFactory;
 import java.io.UnsupportedEncodingException;
 
 import java.time.LocalDate;
@@ -265,7 +266,8 @@ public class App {
                         System.out.print("Tipo (TARJETA/TRANSFERENCIA/EFECTIVO): ");
                         var tipo = TipoMetodoPago.valueOf(sc.nextLine().toUpperCase());
                         System.out.print("Detalles: "); String det=sc.nextLine();
-                        clientes.agregarMetodoPago(id, new MetodoPago(idm, tipo, det));
+                        MetodoPago mp = MetodoPagoFactory.crearMetodoPago(tipo, idm, det);
+                        clientes.agregarMetodoPago(id, mp);
                         System.out.println(OK + "Método agregado.");
                     } catch (NumberFormatException e){
                         System.out.println(ERR + "Datos inválidos o tipo no reconocido.");
