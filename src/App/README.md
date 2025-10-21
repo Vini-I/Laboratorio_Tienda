@@ -24,6 +24,9 @@ El diseño sigue principios de **buenas prácticas**, **encapsulamiento**, **sep
 
 ---
 
+Builder: Se implemento el metodo builder en la clase Producto por la cantidad de parametros que esta posee,
+ya que al ser 5 parametros estos se acumulan mucho en un solo constructor.
+
 ## ⚙️ Estructura del proyecto
 📦 src/
 ├── App.java # Clase principal
