@@ -26,17 +26,54 @@ public class Producto {
     public void setStock(int s){ this.stock=s; }
     public void setCategoria(Categoria c){ this.categoria=c; }
 
-    public Producto(String codigo, String nombre, double precio, int stock, Categoria categoria) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.stock = stock;
-        this.categoria = categoria;
+    private Producto(ProductBuilder builder) {
+        this.codigo = builder.codigo;
+        this.nombre = builder.nombre;
+        this.precio = builder.precio;
+        this.stock = builder.stock;
+        this.categoria = builder.categoria;
     }
 
     @Override
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + ", categoria=" + categoria + '}';
+    }
+    
+    public static class ProductBuilder {
+        private String codigo;
+        private String nombre;
+        private double precio;
+        private int stock;
+        private Categoria categoria;
+
+        public ProductBuilder setCodigo(String codigo) {
+            this.codigo = codigo;
+            return this;
+        }
+
+        public ProductBuilder setNombre(String nombre) {
+            this.nombre = nombre;
+            return this;
+        }
+
+        public ProductBuilder setPrecio(double precio) {
+            this.precio = precio;
+            return this;
+        }
+
+        public ProductBuilder setStock(int stock) {
+            this.stock = stock;
+            return this;
+        }
+
+        public ProductBuilder setCategoria(Categoria categoria) {
+            this.categoria = categoria;
+            return this;
+        }
+
+        public Producto build() {
+            return new Producto(this);
+        }
     }
 
 }
