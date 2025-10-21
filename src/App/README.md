@@ -24,6 +24,10 @@ El diseño sigue principios de **buenas prácticas**, **encapsulamiento**, **sep
 
 ---
 
+Iterator: Se aplica en todas las clases que tengan una lista en este proyecto esas clases serian las Repositorio y
+sus metodos en las clases de Servicios y por ultimo modificar las llamadas del iterador en el main, en las unicas clases
+implementadas fuero en RepositorioCategorias,ServicioCatalogo y App
+
 ## ⚙️ Estructura del proyecto
 📦 src/
 ├── App.java # Clase principal
