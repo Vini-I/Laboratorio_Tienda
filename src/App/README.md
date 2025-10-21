@@ -33,6 +33,9 @@ Iterator: Se aplica en todas las clases que tengan una lista en este proyecto es
 sus metodos en las clases de Servicios y por ultimo modificar las llamadas del iterador en el main, en las unicas clases
 implementadas fuero en RepositorioCategorias,ServicioCatalogo y App
 
+Strategy: Se implemento en la fabrica de metodos de pago con el objetivo de simplificar y eliminar la necesidad de modificar el codigo de la fabrica cada que se quiera
+agregar un metodo de pago nuevo al codigo.
+
 ## ⚙️ Estructura del proyecto
 📦 src/
 ├── App.java # Clase principal

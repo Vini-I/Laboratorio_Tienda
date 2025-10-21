@@ -16,7 +16,11 @@ import Catalogo.Producto;
 import Catalogo.RepositorioCategorias;
 import Catalogo.RepositorioProductos;
 import Catalogo.ServicioCatalogo;
+import Clientes.MetodoPagoEfectivo;
 import Clientes.MetodoPagoFactory;
+import Clientes.MetodoPagoTarjeta;
+import Clientes.MetodoPagoTransferencia;
+import Clientes.PayMethodStrategy;
 import java.io.UnsupportedEncodingException;
 
 import java.time.LocalDate;
@@ -286,6 +290,7 @@ Optional<Categoria> opt = catalogo.buscarCategoriaPorIdConIterator(id);
                 }
             }
             case "m" -> {
+                PayMethodStrategy strategy = null;
                 System.out.print("Id Cliente: "); String id=sc.nextLine();
                 var opt = clientes.listarClientes().stream().filter(c->c.getId().equals(id)).findFirst();
                 if (opt.isPresent()){
@@ -294,7 +299,13 @@ Optional<Categoria> opt = catalogo.buscarCategoriaPorIdConIterator(id);
                         System.out.print("Tipo (TARJETA/TRANSFERENCIA/EFECTIVO): ");
                         var tipo = TipoMetodoPago.valueOf(sc.nextLine().toUpperCase());
                         System.out.print("Detalles: "); String det=sc.nextLine();
-                        MetodoPago mp = MetodoPagoFactory.crearMetodoPago(tipo, idm, det);
+                        switch (tipo) {
+                            case TARJETA -> strategy = new MetodoPagoTarjeta(idm, det);
+                            case EFECTIVO -> strategy = new MetodoPagoEfectivo(idm, det);
+                            case TRANSFERENCIA -> strategy = new MetodoPagoTransferencia(idm, det);
+                        }
+
+                        MetodoPago mp = new MetodoPagoFactory().crearMetodoPago(strategy);
                         clientes.agregarMetodoPago(id, mp);
                         System.out.println(OK + "Método agregado.");
                     } catch (NumberFormatException e){

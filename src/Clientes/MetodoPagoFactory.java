@@ -12,6 +12,9 @@ public class MetodoPagoFactory {
     private PayMethodStrategy strategy;
     
     public MetodoPago crearMetodoPago(PayMethodStrategy strategy){
+        if (strategy == null) {
+            throw new NullPointerException();
+        }
         return strategy.create();
     }
     
