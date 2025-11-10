@@ -21,7 +21,7 @@ public class ProductoDto {
     public int getStock() { return stock; }
     public String getCategoria() { return categoria; }
 
-    private ProductoDto(String codigo, String nombre, double precio, int stock, String categoria) {
+    public ProductoDto(String codigo, String nombre, double precio, int stock, String categoria) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
