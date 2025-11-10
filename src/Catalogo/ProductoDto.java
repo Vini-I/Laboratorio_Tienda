@@ -13,15 +13,15 @@ public class ProductoDto {
     private final String nombre;
     private final double precio;
     private final int stock;
-    private final String categoria;
+    private final int categoria;
     
     public String getCodigo() { return codigo; }
     public String getNombre() { return nombre; }
     public double getPrecio() { return precio; }
     public int getStock() { return stock; }
-    public String getCategoria() { return categoria; }
+    public int getCategoria() { return categoria; }
 
-    public ProductoDto(String codigo, String nombre, double precio, int stock, String categoria) {
+    public ProductoDto(String codigo, String nombre, double precio, int stock, int categoria) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;

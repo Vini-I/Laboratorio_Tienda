@@ -11,7 +11,7 @@ import Catalogo.Producto.ProductBuilder;
  * @author rodol
  */
 public class ProductoMapper {
-      public ProductoDto toDto(Producto pro, String categoria) {
+      public ProductoDto toDto(Producto pro, int categoria) {
         return new ProductoDto(pro.getCodigo(),pro.getNombre(),pro.getPrecio(),pro.getStock(),categoria);
     }
     
